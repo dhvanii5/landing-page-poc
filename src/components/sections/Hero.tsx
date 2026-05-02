@@ -131,20 +131,41 @@ export function Hero() {
             <div key={idx} className="flex flex-col md:flex-row items-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.5 + card.delay, duration: 0.5 }}
-                className={`flex items-center gap-3 px-4 py-2.5 rounded-xl border border-border/50 bg-surface/40 backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:shadow-[0_0_20px_rgba(99,102,241,0.2)] hover:border-primary/50 transition-all pointer-events-auto ${idx === 3 ? 'border-secondary/20' : ''}`}
+                animate={{ 
+                  opacity: 1, 
+                  y: [0, -4, 0],
+                }}
+                transition={{ 
+                  opacity: { delay: 1.5 + card.delay, duration: 0.5 },
+                  y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: idx * 0.5 }
+                }}
+                className={`flex items-center gap-3 px-4 py-2.5 rounded-xl border border-border/50 bg-surface/40 backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:shadow-[0_0_20px_rgba(99,102,241,0.2)] hover:border-primary/50 transition-all pointer-events-auto group ${idx === 3 ? 'border-secondary/20' : ''}`}
               >
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${idx === 3 ? 'bg-secondary/10' : 'bg-primary/10'}`}>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-500 group-hover:rotate-12 ${idx === 3 ? 'bg-secondary/10' : 'bg-primary/10'}`}>
                   {card.icon}
                 </div>
                 <span className="text-sm font-medium text-foreground/90 whitespace-nowrap">{card.title}</span>
               </motion.div>
               
               {idx < floatingCards.length - 1 && (
-                <div className="flex items-center justify-center px-2 py-3 md:px-4 md:py-0 text-muted/30">
+                <div className="relative flex items-center justify-center px-2 py-3 md:px-4 md:py-0 text-muted/30">
                   <ArrowRight className="hidden md:block w-5 h-5" />
                   <ArrowDown className="md:hidden w-5 h-5" />
+                  
+                  {/* Flow Animation Dot */}
+                  <motion.div
+                    animate={{ 
+                      x: [-10, 10], 
+                      opacity: [0, 1, 0] 
+                    }}
+                    transition={{ 
+                      duration: 1.5, 
+                      repeat: Infinity, 
+                      delay: 1.5 + (idx * 0.5),
+                      ease: "easeInOut"
+                    }}
+                    className="absolute hidden md:block w-1.5 h-1.5 rounded-full bg-primary/40 blur-[1px]"
+                  />
                 </div>
               )}
             </div>
