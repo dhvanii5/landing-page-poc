@@ -45,14 +45,67 @@ export function PlatformDemo() {
                 <div className="flex-1 p-6 flex flex-col gap-4">
                   <div className="h-8 bg-border/30 rounded w-1/4 mb-4"></div>
                   <div className="flex gap-4">
-                    <div className="h-32 bg-background border border-border/50 rounded-lg flex-1"></div>
-                    <div className="h-32 bg-background border border-border/50 rounded-lg flex-1"></div>
-                    <div className="h-32 bg-background border border-border/50 rounded-lg flex-1"></div>
+                    {/* Box 1: Agent */}
+                    <div className="h-32 bg-background border border-border/50 rounded-lg flex-1 p-4 flex flex-col justify-between">
+                      <div className="flex flex-col gap-3">
+                        <div className="w-6 h-6 rounded bg-primary/20 flex items-center justify-center">
+                          <div className="w-3 h-3 rounded-full bg-primary" />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          <div className="h-1.5 bg-border/40 rounded-full w-full" />
+                          <div className="h-1.5 bg-border/20 rounded-full w-2/3" />
+                        </div>
+                      </div>
+                      <div className="text-[9px] font-bold uppercase tracking-widest text-primary/80 bg-primary/10 px-2 py-0.5 rounded w-fit">Agent</div>
+                    </div>
+                    
+                    {/* Box 2: Workflow */}
+                    <div className="h-32 bg-background border border-border/50 rounded-lg flex-1 p-4 flex flex-col justify-between">
+                      <div className="flex flex-col gap-3">
+                        <div className="w-6 h-6 rounded bg-secondary/20 flex items-center justify-center">
+                          <div className="w-3 h-3 bg-secondary rounded-sm rotate-45" />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          <div className="h-1.5 bg-border/40 rounded-full w-4/5" />
+                          <div className="h-1.5 bg-border/20 rounded-full w-full" />
+                        </div>
+                      </div>
+                      <div className="text-[9px] font-bold uppercase tracking-widest text-secondary/80 bg-secondary/10 px-2 py-0.5 rounded w-fit">Workflow</div>
+                    </div>
+
+                    {/* Box 3: Document */}
+                    <div className="h-32 bg-background border border-border/50 rounded-lg flex-1 p-4 flex flex-col justify-between">
+                      <div className="flex flex-col gap-3">
+                        <div className="w-6 h-6 rounded bg-success/20 flex items-center justify-center">
+                          <div className="w-3.5 h-3.5 bg-success rounded-[2px]" />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          <div className="h-1.5 bg-border/40 rounded-full w-3/4" />
+                          <div className="h-1.5 bg-border/20 rounded-full w-1/2" />
+                        </div>
+                      </div>
+                      <div className="text-[9px] font-bold uppercase tracking-widest text-success/80 bg-success/10 px-2 py-0.5 rounded w-fit">Document</div>
+                    </div>
                   </div>
                   <div className="h-48 bg-background border border-border/50 rounded-lg w-full mt-4 flex items-center justify-center relative overflow-hidden">
-                    {/* Abstract nodes/graph mockup */}
-                    <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/30 to-transparent"></div>
-                    <div className="w-12 h-12 rounded-lg bg-primary/20 border border-primary/50 relative z-10 flex items-center justify-center">
+                    {/* Abstract node-graph mockup */}
+                    <svg className="absolute inset-0 w-full h-full opacity-40" viewBox="0 0 600 300">
+                      <g className="stroke-border/30" strokeWidth="1">
+                        <line x1="200" y1="150" x2="300" y2="100" />
+                        <line x1="200" y1="150" x2="300" y2="200" />
+                        <line x1="300" y1="100" x2="400" y2="150" />
+                        <line x1="300" y1="200" x2="400" y2="150" />
+                        <line x1="300" y1="100" x2="300" y2="200" />
+                      </g>
+                      <circle cx="200" cy="150" r="4" className="fill-primary" />
+                      <circle cx="300" cy="100" r="4" className="fill-secondary" />
+                      <circle cx="300" cy="200" r="4" className="fill-success" />
+                      <circle cx="400" cy="150" r="4" className="fill-primary" />
+                      <circle cx="300" cy="150" r="2" className="fill-white/20" />
+                    </svg>
+
+                    <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/30 to-transparent"></div>
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/30 relative z-10 flex items-center justify-center shadow-[0_0_20px_rgba(99,102,241,0.2)]">
                       <Network className="w-6 h-6 text-primary" />
                     </div>
                   </div>

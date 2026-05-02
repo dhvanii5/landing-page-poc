@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
-import { CheckCircle2, Database, Cog, Lightbulb, Sparkles } from "lucide-react";
+import { CheckCircle2, Database, Cog, Lightbulb, Sparkles, ArrowRight, ArrowDown } from "lucide-react";
 import { useRef, useState } from "react";
 
 export function Hero() {
@@ -125,19 +125,14 @@ export function Hero() {
           ))}
         </motion.div>
 
-        {/* Floating UI Simulation */}
-        <div className="relative w-full max-w-4xl mx-auto h-32 md:h-48 mt-4 flex justify-center items-center pointer-events-none">
+        {/* Connected AI Pipeline Flow */}
+        <div className="relative w-full max-w-5xl mx-auto mt-12 flex flex-col md:flex-row items-center justify-center gap-2 md:gap-0">
           {floatingCards.map((card, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.5 + card.delay, duration: 0.8, ease: "easeOut" }}
-              className={`absolute ${idx === 0 ? "left-[2%] md:left-[5%] top-0" : ""} ${idx === 1 ? "left-[20%] md:left-[30%] bottom-0" : ""} ${idx === 2 ? "right-[20%] md:right-[30%] top-4" : ""} ${idx === 3 ? "right-[2%] md:right-[5%] bottom-8" : ""}`}
-            >
+            <div key={idx} className="flex flex-col md:flex-row items-center">
               <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4 + idx, repeat: Infinity, ease: "easeInOut", delay: card.delay }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.5 + card.delay, duration: 0.5 }}
                 className={`flex items-center gap-3 px-4 py-2.5 rounded-xl border border-border/50 bg-surface/40 backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.2)] hover:shadow-[0_0_20px_rgba(99,102,241,0.2)] hover:border-primary/50 transition-all pointer-events-auto ${idx === 3 ? 'border-secondary/20' : ''}`}
               >
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center ${idx === 3 ? 'bg-secondary/10' : 'bg-primary/10'}`}>
@@ -145,7 +140,14 @@ export function Hero() {
                 </div>
                 <span className="text-sm font-medium text-foreground/90 whitespace-nowrap">{card.title}</span>
               </motion.div>
-            </motion.div>
+              
+              {idx < floatingCards.length - 1 && (
+                <div className="flex items-center justify-center px-2 py-3 md:px-4 md:py-0 text-muted/30">
+                  <ArrowRight className="hidden md:block w-5 h-5" />
+                  <ArrowDown className="md:hidden w-5 h-5" />
+                </div>
+              )}
+            </div>
           ))}
         </div>
       </div>
