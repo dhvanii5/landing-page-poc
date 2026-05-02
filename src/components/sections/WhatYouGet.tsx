@@ -1,99 +1,157 @@
 "use client";
 
-import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { motion } from "framer-motion";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 
+const platformAccess = [
+  "Secure AI Infrastructure",
+  "Pre-built Agent Library",
+  "Drag & Drop Workflow Builder",
+  "Role-based Access Control",
+  "Enterprise Audit Logs",
+];
+
+const useCases = [
+  "Business Process Automation",
+  "Digital Twin Creation",
+  "Intelligent Quotation Builder",
+  "Multi-Agent Orchestration",
+  "Knowledge Base Search",
+];
+
+const mentorshipSteps = [
+  { title: "Learn", desc: "Understand the core mechanics of AI agents." },
+  { title: "Apply", desc: "Build your first workflow with our guidance." },
+  { title: "Support", desc: "Ongoing expert support to scale solutions." },
+];
+
+const col = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+};
+const item = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45 } },
+};
+
 export function WhatYouGet() {
-  const platformAccess = [
-    "Secure AI Infrastructure",
-    "Pre-built Agent Library",
-    "Drag & Drop Workflow Builder",
-    "Role-based Access Control",
-    "Enterprise Audit Logs"
-  ];
-
-  const useCases = [
-    "Business Process Automation",
-    "Digital Twin Creation",
-    "Intelligent Quotation Builder",
-    "Multi-Agent Orchestration",
-    "Knowledge Base Search"
-  ];
-
-  const mentorshipSteps = [
-    { title: "Learn", desc: "Understand the core mechanics of AI agents." },
-    { title: "Apply", desc: "Build your first workflow with our guidance." },
-    { title: "Support", desc: "Ongoing expert support to scale solutions." }
-  ];
-
   return (
-    <AnimatedSection id="use-cases" className="py-24 bg-surface/20 relative border-t border-border/10">
+    <section
+      id="use-cases"
+      className="py-24 relative"
+      style={{
+        background: "rgba(255,255,255,0.015)",
+        borderTop: "1px solid rgba(255,255,255,0.06)",
+      }}
+    >
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col items-center text-center mb-16">
-          <span className="text-[0.8rem] font-medium uppercase tracking-[0.1em] text-muted mb-4">What&apos;s Included</span>
-          <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-tight">One Platform. Three Superpowers.</h2>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-center text-center mb-16"
+        >
+          <span className="eyebrow">What&apos;s Included</span>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-tight" style={{ color: "#E8EDF8" }}>
+            One Platform. Three Superpowers.
+          </h2>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 max-w-6xl mx-auto rounded-xl border border-border bg-background overflow-hidden">
-          
+        <div
+          className="grid grid-cols-1 md:grid-cols-3 rounded-2xl overflow-hidden max-w-6xl mx-auto"
+          style={{
+            border: "1px solid rgba(255,255,255,0.07)",
+            background: "#0A0F1E",
+          }}
+        >
           {/* Column 1 */}
-          <div className="p-8 md:p-10">
-            <h3 className="font-heading text-xl font-semibold mb-6 text-foreground">Platform Access</h3>
+          <motion.div
+            variants={col}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            className="p-8 md:p-10"
+            style={{ borderRight: "1px solid rgba(255,255,255,0.06)" }}
+          >
+            <h3 className="font-heading text-lg font-semibold mb-6" style={{ color: "#E8EDF8" }}>
+              Platform Access
+            </h3>
             <ul className="space-y-4">
-              {platformAccess.map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-muted">{item}</span>
-                </li>
+              {platformAccess.map((txt, i) => (
+                <motion.li key={i} variants={item} className="flex items-start gap-3 text-sm" style={{ color: "#8B9AB0" }}>
+                  <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "#E8B84B" }} />
+                  {txt}
+                </motion.li>
               ))}
             </ul>
-          </div>
-
-          {/* Divider */}
-          <div className="hidden md:block w-px bg-border"></div>
+          </motion.div>
 
           {/* Column 2 */}
-          <div className="p-8 md:p-10 md:border-l-0 border-t md:border-t-0 border-border">
-            <h3 className="font-heading text-xl font-semibold mb-6 text-foreground">Possible Use Cases</h3>
+          <motion.div
+            variants={col}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            className="p-8 md:p-10 border-t md:border-t-0"
+            style={{ borderColor: "rgba(255,255,255,0.06)", borderRight: "1px solid rgba(255,255,255,0.06)" }}
+          >
+            <h3 className="font-heading text-lg font-semibold mb-6" style={{ color: "#E8EDF8" }}>
+              Possible Use Cases
+            </h3>
             <ul className="space-y-4">
-              {useCases.map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0 mt-2"></div>
-                  <span className="text-muted">{item}</span>
-                </li>
+              {useCases.map((txt, i) => (
+                <motion.li key={i} variants={item} className="flex items-start gap-3 text-sm" style={{ color: "#8B9AB0" }}>
+                  <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-1.5" style={{ background: "#E8B84B" }} />
+                  {txt}
+                </motion.li>
               ))}
             </ul>
-          </div>
-
-          {/* Divider */}
-          <div className="hidden md:block w-px bg-border"></div>
+          </motion.div>
 
           {/* Column 3 */}
-          <div className="p-8 md:p-10 md:border-l-0 border-t md:border-t-0 border-border bg-surface/30">
-            <h3 className="font-heading text-xl font-semibold mb-6 text-foreground">Mentorship Model</h3>
-            <div className="space-y-6">
-              {mentorshipSteps.map((step, i) => (
-                <div key={i} className="relative flex gap-4">
-                  {i !== mentorshipSteps.length - 1 && (
-                    <div className="absolute left-4 top-8 bottom-[-16px] w-[2px] bg-border/50"></div>
-                  )}
-                  <div className="w-8 h-8 rounded-full bg-background border border-border flex items-center justify-center flex-shrink-0 z-10 font-heading text-sm font-semibold text-primary">
+          <motion.div
+            variants={col}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            className="p-8 md:p-10 border-t md:border-t-0"
+            style={{ borderColor: "rgba(255,255,255,0.06)" }}
+          >
+            <h3 className="font-heading text-lg font-semibold mb-6" style={{ color: "#E8EDF8" }}>
+              Mentorship Model
+            </h3>
+            <div className="space-y-6 relative">
+              <div className="absolute left-4 top-5 bottom-8 w-px" style={{ background: "rgba(255,255,255,0.07)" }} />
+              {mentorshipSteps.map((s, i) => (
+                <motion.div key={i} variants={item} className="flex gap-4 relative z-10">
+                  <div
+                    className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-heading font-bold text-xs"
+                    style={{
+                      background: "#060912",
+                      border: "1px solid rgba(232,184,75,0.35)",
+                      color: "#E8B84B",
+                    }}
+                  >
                     {i + 1}
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground text-sm">{step.title}</h4>
-                    <p className="text-sm text-muted mt-1">{step.desc}</p>
+                  <div className="pt-1">
+                    <div className="font-semibold text-sm mb-0.5" style={{ color: "#E8EDF8" }}>{s.title}</div>
+                    <div className="text-xs leading-relaxed" style={{ color: "#8B9AB0" }}>{s.desc}</div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
-            <button className="mt-8 flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors">
-              Explore Mentorship <ArrowRight className="w-4 h-4" />
+            <button
+              className="mt-8 ml-12 flex items-center gap-2 text-sm font-medium transition-colors"
+              style={{ color: "#E8B84B" }}
+            >
+              Explore Mentorship
+              <ArrowRight className="w-4 h-4" />
             </button>
-          </div>
-          
+          </motion.div>
         </div>
       </div>
-    </AnimatedSection>
+    </section>
   );
 }
